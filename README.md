@@ -1,11 +1,11 @@
 # Temporal Worker Tuning Reference
 
-| Area        | Definition                               | Upper Bound                         | Lower Bound / Starting Point | Key Metrics / Notes                                  |
-|-------------|------------------------------------------|-------------------------------------|-----------------------------|------------------------------------------------------|
-| **Pollers** | Threads fetching tasks from Task Queue   | ~20k per Task Queue (total)         | 4 (default partition count) | Scale until poll success rate stable, latency low    |
-| **Task Slots** | Concurrency for workflow/activity tasks | CPU-bound (thread pool size)        | Fully utilize slots         | Monitor queue backlog, target ~70–80% CPU           |
-| **Stickiness** | In-memory workflow state cache        | Memory-based (LRU eviction)         | ~200 if autoscaling         | Low = higher replay latency; High = less horiz. scaling |
-| **Scaling** | How to grow worker capacity             | Vertical (CPU/mem/slots) preferred  | N/A                          | Horizontal only helps new/uncached workflows        |
+| Area        | Definition                               | Lower Bound / Starting Point | Upper Bound                         | Key Metrics / Notes                                  |
+|-------------|------------------------------------------|-----------------------------|------------------------------------|------------------------------------------------------|
+| **Pollers** | Threads fetching tasks from Task Queue   | 4 (default partition count) | ~20k per Task Queue (total)         | Scale until poll success rate stable, latency low    |
+| **Task Slots** | Concurrency for workflow/activity tasks | Fully utilize slots         | CPU-bound (thread pool size)        | Monitor queue backlog, target ~70–80% CPU           |
+| **Stickiness** | In-memory workflow state cache        | ~200 if autoscaling         | Memory-based (LRU eviction)         | Low = higher replay latency; High = less horiz. scaling |
+| **Scaling** | How to grow worker capacity             | N/A                          | Vertical (CPU/mem/slots) preferred  | Horizontal only helps new/uncached workflows        |
 
 ## Quick Tuning Rules
 
