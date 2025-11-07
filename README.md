@@ -4,7 +4,7 @@
 |-------------|------------------------------------------|-----------------------------|------------------------------------|------------------------------------------------------|
 | **Pollers** | Threads fetching tasks from Task Queue   | 4 (default partition count) | ~20k per Task Queue (total)         | Scale until poll success rate stable, latency low    |
 | **Task Slots** | Concurrency for workflow/activity tasks | Fully utilize slots         | CPU-bound (thread pool size)        | Monitor queue backlog, target ~70–80% CPU           |
-| **Stickiness** | In-memory workflow state cache        | ~200 if autoscaling         | Memory-based (LRU eviction)         | Low = higher replay latency; High = less horiz. scaling |
+| **Stickiness** | In-memory workflow state cache        | SDK Default         | Memory-based (LRU eviction)         | Low = higher replay latency; High = less horiz. scaling |
 | **Scaling** | How to grow worker capacity             | N/A                          | Vertical (CPU/mem/slots) preferred  | Horizontal only helps new/uncached workflows        |
 
 ## Quick Tuning Rules
