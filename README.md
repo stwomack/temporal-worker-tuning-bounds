@@ -9,9 +9,11 @@
 
 ## Quick Tuning Rules
 
-- Size task slots to match CPU headroom; avoid overcommitting threads.
-- Lower stickiness for frequent autoscaling; raise it if replay latency is a problem.
-- Keep pollers high enough to avoid starvation, but watch CPU.  
+- Size task slots up to comfortable CPU headroom; avoid overcommitting threads.
+- Increase sticky up to comfortable Mem headroom
+  - Drop stickiness if aggressive autoscaling so you don't have hot workers
+  - Raise it if replay latency is a problem.
+- Keep pollers high enough to avoid task slot starvation,
 - Use metrics (poll success rate, sticky hit rate, queue latency, CPU) to drive changes, not guesswork.
 
 
